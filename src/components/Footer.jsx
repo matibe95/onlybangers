@@ -7,7 +7,7 @@ export const Footer = () => {
       <section className="flex items-center gap-2">
         <p className="font-medium">Redes sociales:</p>
         <div className="flex gap-4">
-          <a target="__blank" href="https://www.instagram.com/onlybangers_music/">
+          <a target="_blank" href="https://www.instagram.com/onlybangers_music/">
             <i className='bx bxl-instagram text-2xl'></i>
           </a>
         </div>

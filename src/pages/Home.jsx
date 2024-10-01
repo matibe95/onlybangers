@@ -21,9 +21,9 @@ export const Home = () => {
               <Link to={"/"} className="cta-button rounded-full text-center custom-container px-12 py-2 font-bold bg-c-yellow">
                 Recomendar
               </Link>
-              <Link to={"/"} className="contact-button rounded-full text-center custom-container px-12 py-2 font-bold bg-white">
+              <a target="_blank" href={"https://www.instagram.com/onlybangers_music/"} className="contact-button rounded-full text-center custom-container px-12 py-2 font-bold bg-white">
                 Contacto
-              </Link>
+              </a>
             </div>
           </div>
         </section>
