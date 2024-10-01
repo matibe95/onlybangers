@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.05em;
+  color: #222;
+
+  --color-primary: #FF91E8;
+  --color-accent: #FFDB58;
+  --color-dark: #252A34;
+  --color-border: #222;
+  --color-light: #f1f1f1;
+  --color-green: #064043;
+  --color-lightgreen: #22a094;
+  --color-lime: #06AE56;
+  --color-yellow: #FFDB58;
+  --color-red: #e6485e;
+  --color-orange: #ff9728;
+  --color-fuccia: #ff6b6b;
+  --color-pink: #c64c9f;
+  --color-purple: #C4A1FF;
+  --color-blue: #87CEEB;
+  --color-skyblue: #91A8EC;
+}
+
+::selection {
+  background: var(--color-lightgreen);
+}
+
+.primary-header {
+  font-family: "Poppins", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.custom-container,
+.custom-container-card,
+.custom-container-without-border {
+  transition-property: box-shadow, transform;
+  transition-duration: .14s;
+  transition-timing-function: cubic-bezier(.25, .46, .45, .94);
+}
+
+.primary-animation:hover {
+  transform: translate(-0.2rem, -0.2rem);
+  box-shadow: 4px 4px 0px 0px var(--color-border);
+}
+
+.custom-container {
+  border: 2px solid var(--color-border);
+  box-shadow: 4px 4px 0px 0px var(--color-border);
+}
+
+.custom-container-card {
+  border: 3px solid var(--color-border);
+  box-shadow: 6px 6px 0px 0px var(--color-border);
+}
+
+.custom-container-without-border {
+  border: 2px solid var(--color-border);
+}
+
+#only-bangers-navbar {
+  width: 240px;
+}
+
+@media (max-width: 425px) {
+  .navbar-link {
+    @apply text-base
+  }
+
+  #only-bangers-navbar {
+    width: 170px;
+  }
+
+  .custom-container {
+    box-shadow: 3px 3px 0px 0px var(--color-border);
+  }
+
+  .custom-container-card {
+    border: 2px solid var(--color-border);
+    box-shadow: 4px 4px 0px 0px var(--color-border);
+  }
+}
+
+@media (max-width: 340px) {
+  #only-bangers-navbar {
+    width: 150px;
+  }
+
+  .navbar-link {
+    @apply text-sm
+  }
+}

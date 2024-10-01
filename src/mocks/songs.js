@@ -1,0 +1,52 @@
+export const SONGS_LIST = [
+  {
+    id: 'motor-enfermo-airbag',
+    author: "Airbag",
+    title: "Motor Enfermo (Frankenstein)",
+    thumbnail: "https://i.scdn.co/image/ab67616d00001e02536521e97eaf8309fe37ed34",
+    url: "",
+  },
+  {
+    id: 'el-primer-dia-del-resto-de-mi-vida-lodvg',
+    author: "La Oreja de Van Gogh",
+    title: "El Primer Día del Resto de Mi Vida - Directo Primera Fila",
+    thumbnail: "https://i.scdn.co/image/ab67616d00001e02fd536ef5bcef30482fe9265e",
+    url: "",
+  },
+  {
+    id: 'you-and-i-d4vd',
+    author: "d4vd",
+    title: "You and I",
+    thumbnail: "https://i.scdn.co/image/ab67616d00001e0264fa1bda999f4fbd2b7c4bb7",
+    url: "",
+  },
+  {
+    id: 'iris-goo-goo-dolls',
+    author: "Goo Goo Dolls",
+    title: "Iris",
+    thumbnail: "https://i.scdn.co/image/ab67616d00001e02eda9478c39a21e1cdc6609ca",
+    youtube: "https://www.youtube.com/watch?v=NdYWuo9OFAw",
+    spotify: "",
+  },
+  {
+    id: 'the-walls-are-way-too-thin-hh',
+    author: "Holly Humberstone",
+    title: "The Walls Are Way Too Thin",
+    thumbnail: "https://i.scdn.co/image/ab67616d00001e0216c6a74d37f1ec412d15be61",
+    url: "",
+  },
+  {
+    id: 'silver-springs-live-at-fleetwood-mac',
+    author: "Fleetwood Mac",
+    title: "Silver Springs - Live at Warner Brothers Studios in Burbank",
+    thumbnail: "https://i.scdn.co/image/ab67616d00001e020b8de3e1eb45d3b13bdb7057",
+    url: "",
+  },
+  {
+    id: 'la-bachata-manuel-turizo',
+    author: "Manuel Turizo",
+    title: "La Bachata",
+    thumbnail: "https://i.scdn.co/image/ab67616d00001e02c9f744b0d62da795bc21d04a",
+    url: "",
+  },
+];

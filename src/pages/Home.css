@@ -1,0 +1,255 @@
+/* Iconos */
+#cursor-img {
+  position: absolute;
+  width: 100px;
+  left: 80%;
+  top: 70%;
+  rotate: 0deg;
+}
+
+#single-star-img {
+  position: absolute;
+  width: 150px;
+  top: 50%;
+  left: 50%;
+}
+
+#rounded-star-img {
+  position: absolute;
+  top: -2em;
+  right: 50%;
+  width: 120px;
+}
+
+#disket-img {
+  position: absolute;
+  width: 220px;
+  top: 2em;
+  right: 22%;
+}
+
+#corchea-img {
+  position: absolute;
+  width: 180px;
+  top: 70%;
+  left: 32%;
+}
+
+@media (max-width: 1440px) {
+  #disket-img {
+    right: 10em;
+  }
+
+  #rounded-star-img {
+    right: 45%;
+  }
+
+  #single-star-img {
+    width: 130px;
+    top: 60%;
+    left: 50%;
+  }
+
+  #corchea-img {
+    top: 70%;
+    width: 150px;
+    left: 30%;
+  }
+}
+
+@media (max-width: 1400px) {
+  #single-star-img {
+    width: 130px;
+    top: 43%;
+    left: 50%;
+  }
+}
+
+@media (max-width: 1280px) {
+  #single-star-img {
+    width: 130px;
+    top: 47%;
+    left: 50%;
+  }
+}
+
+@media (max-width: 1092px) {
+  #rounded-star-img {
+    right: 45%;
+    width: 100px;
+  }
+
+  #disket-img {
+    top: 10%;
+    right: 10%;
+  }
+
+  #single-star-img {
+    width: 130px;
+    top: 55%;
+    left: 52%;
+  }
+
+  #corchea-img {
+    top: 60%;
+    left: 20%;
+    display: none;
+  }
+}
+
+@media (max-width: 890px) {
+  #disket-img {
+    top: 3em;
+    right: 5em;
+    width: 100px;
+  }
+
+  #rounded-star-img {
+    top: 4%;
+    left: 5%;
+    width: 80px;
+  }
+
+  #single-star-img {
+    width: 80px;
+    top: 80%;
+    left: 45%;
+  }
+
+  #corchea-img {
+    display: block;
+    top: 57%;
+    left: 7%;
+  }
+}
+
+@media (max-width: 768px) {
+  #disket-img {
+    width: 80px;
+    right: 7em;
+  }
+
+  #rounded-star-img {
+    top: 4%;
+  }
+}
+
+
+@media (max-width: 600px) {
+  #rounded-star-img {
+    top: -5%;
+  }
+
+  #disket-img {
+    top: 4%;
+    right: 12%;
+  }
+
+  #corchea-img {
+    top: 70%;
+    width: 95px;
+  }
+
+  #single-star-img {
+    top: 85%;
+    left: 40%;
+  }
+}
+
+
+@media (max-width: 510px) {
+  #disket-img {
+    top: 1.5em;
+    right: 2em;
+  }
+
+  #rounded-star-img {
+    left: -5%;
+    width: 60px;
+  }
+
+  #single-star-img {
+    display: none;
+  }
+
+  #cursor-img {
+    width: 75px;
+    top: 84%;
+    left: 90%;
+  }
+
+  #corchea-img {
+    top: 75%;
+  }
+}
+
+@media (max-width: 425px) {
+
+  #disket-img,
+  #cursor-img,
+  #single-star-img,
+  #corchea-img {
+    display: none;
+  }
+
+  #rounded-star-img {
+    display: block;
+    left: 85%;
+    top: -7%;
+    width: 120px;
+  }
+}
+
+/* Estilos principales */
+.main-container {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+}
+
+.home-cards-container {
+  @apply justify-around py-12;
+}
+
+.main-container-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (max-width: 890px) {
+  .second-color-container {
+    display: none;
+  }
+
+  .main-container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-container-container {
+    gap: 24px;
+  }
+
+  .home-cards-container {
+    @apply px-4 py-8 justify-around;
+  }
+
+  .cta-button,
+  .contact-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 425px) {
+  .home-cards-container {
+    @apply px-2 py-8 justify-evenly;
+  }
+}
+
+@media (max-width: 340px) {
+  .home-cards-container {
+    @apply px-0;
+  }
+}
