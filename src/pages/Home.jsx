@@ -97,25 +97,24 @@ export const Home = () => {
           <i className='bx bxs-objects-horizontal-left text-xl'></i>
         </button>
       </div> */}
-      {
-        loading && (
-          <p>Loading...</p>
-        )
-      }
       <div className="home-cards-container flex gap-4 flex-wrap">
         {
-          songsList.map((item) => {
-            return (
-              <Card
-                clickable
-                id={item.id}
-                key={item.id}
-                title={item.title}
-                author={item.author}
-                thumbnail={item.thumbnail}
-              />
+          loading
+            ? (
+              <p className="text-xl font-semibold">Estamos cargando las canciones...</p>
             )
-          })
+            : songsList.map((item) => {
+              return (
+                <Card
+                  clickable
+                  id={item.id}
+                  key={item.id}
+                  title={item.title}
+                  author={item.author}
+                  thumbnail={item.thumbnail}
+                />
+              )
+            })
         }
         {/* {SONGS_LIST.map((item) => {
           return (

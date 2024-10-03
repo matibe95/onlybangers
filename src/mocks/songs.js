@@ -26,7 +26,7 @@ export const SONGS_LIST = [
     title: "Iris",
     thumbnail: "https://i.scdn.co/image/ab67616d00001e02eda9478c39a21e1cdc6609ca",
     youtube: "https://www.youtube.com/watch?v=NdYWuo9OFAw",
-    spotify: "",
+    spotify: "https://open.spotify.com/track/6Qyc6fS4DsZjB2mRW9DsQs?si=6e072e8729994562",
   },
   {
     id: 'the-walls-are-way-too-thin-hh',
