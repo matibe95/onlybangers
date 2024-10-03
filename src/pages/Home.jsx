@@ -1,30 +1,49 @@
 import { Card } from "../components/Card"
-import { SONGS_LIST } from "../mocks/songs"
+// import { SONGS_LIST } from "../mocks/songs"
 import { Footer } from "../components/Footer"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BOT_ID, CHAT_ID } from "../constants/credentials"
 import './Home.css'
+import { filterAndCleanMessage } from "../utils/filterMessage"
 
 export const Home = () => {
-  const [song, setSong] = useState("")
+  const [songLink, setSongLink] = useState("")
+  const [songsList, setSongsList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const showError = () => {
-    alert('Tu canción debe de ser un link válido')
-  }
+  useEffect(() => {
+    const fetchMessages = async () => {
+      const response = await fetch(`https://api.telegram.org/bot${BOT_ID}/getUpdates`);
+      if (!response.ok) {
+        throw new Error('Error al obtener los mensajes de Telegram');
+      }
+      const data = await response.json();
 
-  const showCorrectSong = () => {
-    alert('Gracias por tu recomendación, en breves la subiremos a la web!')
-  }
+      const result = filterAndCleanMessage(data)
+      setSongsList(result)
+      setLoading(false);
+    };
+    fetchMessages();
+  }, [])
 
   const handleSend = async () => {
-    if (!song.includes('https://')) {
+    const showError = () => {
+      alert('Tu canción debe de ser un link válido')
+    }
+
+    const showCorrectSong = () => {
+      alert('Gracias por tu recomendación, en breves la subiremos a la web!')
+    }
+
+    if (!songLink.includes('https://')) {
       showError();
       return;
     }
-    await fetch(`https://api.telegram.org/bot${BOT_ID}/sendMessage?chat_id=${CHAT_ID}&text=${song}`);
+    await fetch(`https://api.telegram.org/bot${BOT_ID}/sendMessage?chat_id=${CHAT_ID}&text=${songLink}`);
     showCorrectSong()
     location.reload();
   }
+
 
   return (
     <div>
@@ -39,7 +58,7 @@ export const Home = () => {
             <h1 className="text-3xl primary-header md:text-5xl xl:text-6xl font-bold">En busqueda de la <br /> armonía que nos conecta.</h1>
             <p className="text text-base text-pretty xl:text-xl font-medium ">OnlyBangers es una colección de canciones recomendadas por <br /> amantes de la música, <span className="underline underline-offset-[2px]">esperando a ser descubiertas.</span></p>
             <div className="cta-buttons-container gap-4 py-2 text-lg">
-              <input onChange={(e) => setSong(e.target.value)} type="text" placeholder="Link de la canción" className="cta-button rounded-full text-center custom-container px-12 py-2 font-medium bg-white outline-none placeholder:italic w-full" />
+              <input onChange={(e) => setSongLink(e.target.value)} type="text" placeholder="Link de la canción" className="cta-button rounded-full text-center custom-container px-12 py-2 font-medium bg-white outline-none placeholder:italic w-full" />
               <button onClick={handleSend} className="cta-button flex items-center gap-2 rounded-full text-center custom-container px-12 py-2 font-bold bg-c-yellow">
                 Recomendar
                 <i className='bx bxs-cloud-upload text-2xl'></i>
@@ -78,8 +97,27 @@ export const Home = () => {
           <i className='bx bxs-objects-horizontal-left text-xl'></i>
         </button>
       </div> */}
+      {
+        loading && (
+          <p>Loading...</p>
+        )
+      }
       <div className="home-cards-container flex gap-4 flex-wrap">
-        {SONGS_LIST.map((item) => {
+        {
+          songsList.map((item) => {
+            return (
+              <Card
+                clickable
+                id={item.id}
+                key={item.id}
+                title={item.title}
+                author={item.author}
+                thumbnail={item.thumbnail}
+              />
+            )
+          })
+        }
+        {/* {SONGS_LIST.map((item) => {
           return (
             <Card
               clickable
@@ -90,7 +128,7 @@ export const Home = () => {
               thumbnail={item.thumbnail}
             />
           )
-        })}
+        })} */}
       </div>
       <Footer />
     </div>
