@@ -9,11 +9,11 @@ export const NavBar = () => {
             <img src="/onlybangers.png" id="only-bangers-navbar" />
           </Link>
         </li>
-        <li className="flex gap-10 font-medium">
+        {/* <li className="flex gap-10 font-medium">
           <Link className="navbar-link hover:underline underline-offset-4 text-xl" to={'/'}>
             Proyecto
           </Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   )

@@ -18,12 +18,12 @@ export const Home = () => {
             <h1 className="text-3xl primary-header md:text-5xl xl:text-6xl font-bold">En busqueda de la <br /> armonía que nos conecta.</h1>
             <p className="text text-base text-pretty xl:text-xl font-medium">OnlyBangers es una colección de canciones recomendadas por <br /> amantes de la música, <span className="underline underline-offset-[2px]">esperando a ser descubiertas.</span></p>
             <div className="flex gap-4 py-2 text-lg flex-wrap">
-              <Link to={"/"} className="cta-button rounded-full text-center custom-container px-12 py-2 font-bold bg-c-yellow">
+              <a href={"https://www.instagram.com/onlybangers_music/"} target="_blank" className="cta-button rounded-full text-center custom-container px-12 py-2 font-bold bg-c-yellow">
                 Recomendar
-              </Link>
-              <a target="_blank" href={"https://www.instagram.com/onlybangers_music/"} className="contact-button rounded-full text-center custom-container px-12 py-2 font-bold bg-white">
-                Contacto
               </a>
+              {/* <a target="_blank" href={"https://www.instagram.com/onlybangers_music/"} className="contact-button rounded-full text-center custom-container px-12 py-2 font-bold bg-white">
+                Contacto
+              </a> */}
             </div>
           </div>
         </section>
