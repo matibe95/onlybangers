@@ -35,6 +35,11 @@
   left: 32%;
 }
 
+.cta-buttons-container {
+  display: flex;
+  flex-direction: row;
+}
+
 @media (max-width: 1440px) {
   #disket-img {
     right: 10em;
@@ -136,6 +141,10 @@
 
 
 @media (max-width: 600px) {
+  .cta-buttons-container {
+    flex-direction: column;
+  }
+
   #rounded-star-img {
     top: -5%;
   }

@@ -1,10 +1,31 @@
-import { Link } from "react-router-dom"
 import { Card } from "../components/Card"
 import { SONGS_LIST } from "../mocks/songs"
 import { Footer } from "../components/Footer"
+import { useState } from "react"
+import { BOT_ID, CHAT_ID } from "../constants/credentials"
 import './Home.css'
 
 export const Home = () => {
+  const [song, setSong] = useState("")
+
+  const showError = () => {
+    alert('Tu canción debe de ser un link válido')
+  }
+
+  const showCorrectSong = () => {
+    alert('Gracias por tu recomendación, en breves la subiremos a la web!')
+  }
+
+  const handleSend = async () => {
+    if (!song.includes('https://')) {
+      showError();
+      return;
+    }
+    await fetch(`https://api.telegram.org/bot${BOT_ID}/sendMessage?chat_id=${CHAT_ID}&text=${song}`);
+    showCorrectSong()
+    location.reload();
+  }
+
   return (
     <div>
       <article className="main-container overflow-clip relative bg-white border-b-[2px] border-b-black">
@@ -16,11 +37,13 @@ export const Home = () => {
         <section className="primary-container bg-c-primary py-12 px-10 h-[500px] flex items-center justify-center">
           <div className="main-container-container z-50">
             <h1 className="text-3xl primary-header md:text-5xl xl:text-6xl font-bold">En busqueda de la <br /> armonía que nos conecta.</h1>
-            <p className="text text-base text-pretty xl:text-xl font-medium">OnlyBangers es una colección de canciones recomendadas por <br /> amantes de la música, <span className="underline underline-offset-[2px]">esperando a ser descubiertas.</span></p>
-            <div className="flex gap-4 py-2 text-lg flex-wrap">
-              <a href={"https://www.instagram.com/onlybangers_music/"} target="_blank" className="cta-button rounded-full text-center custom-container px-12 py-2 font-bold bg-c-yellow">
+            <p className="text text-base text-pretty xl:text-xl font-medium ">OnlyBangers es una colección de canciones recomendadas por <br /> amantes de la música, <span className="underline underline-offset-[2px]">esperando a ser descubiertas.</span></p>
+            <div className="cta-buttons-container gap-4 py-2 text-lg">
+              <input onChange={(e) => setSong(e.target.value)} type="text" placeholder="Link de la canción" className="cta-button rounded-full text-center custom-container px-12 py-2 font-medium bg-white outline-none placeholder:italic w-full" />
+              <button onClick={handleSend} className="cta-button flex items-center gap-2 rounded-full text-center custom-container px-12 py-2 font-bold bg-c-yellow">
                 Recomendar
-              </a>
+                <i className='bx bxs-cloud-upload text-2xl'></i>
+              </button>
               {/* <a target="_blank" href={"https://www.instagram.com/onlybangers_music/"} className="contact-button rounded-full text-center custom-container px-12 py-2 font-bold bg-white">
                 Contacto
               </a> */}
