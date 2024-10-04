@@ -10,7 +10,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:id" element={<ShareScreen />} />
+        <Route path="/:referenceId" element={<ShareScreen />} />
       </Routes>
     </div>
   )

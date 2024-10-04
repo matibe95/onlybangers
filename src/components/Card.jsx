@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 import './Card.css'
 
-export const Card = ({ clickable = false, title = 'Titulo', author = "Artista", thumbnail = "", url = "", id }) => {
+export const Card = ({ clickable = false, title = 'Titulo', author = "Artista", thumbnail = "", url = "", referenceId }) => {
   const newStyles = clickable ? 'primary-animation' : 'cursor-default'
-  const route = clickable ? `/${id}` : ''
+  const route = clickable ? `/${referenceId}` : ''
 
   return (
     <Link to={route} className={`${newStyles} card-container-home custom-container-card bg-white flex flex-col rounded-xl mb-6`} >

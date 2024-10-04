@@ -1,15 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useGetUrlParams } from "../hooks/useGetUrlParams"
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { SONGS_LIST } from "../mocks/songs";
 import './ShareScreen.css'
+import useFetch from "../hooks/useFetch";
 
 export const ShareScreen = () => {
-  const { id } = useGetUrlParams();
-  const currentSong = SONGS_LIST.find(item => item.id == id)
+  const { referenceId } = useParams();
+  const { data, loading, error } = useFetch(`http://localhost:8001/api/getSong/${referenceId}`);
 
-  if (!currentSong) {
-    return;
-  }
+  const currentSong = data
 
   return (
     <div className="">
@@ -23,17 +21,24 @@ export const ShareScreen = () => {
         <img src="/share-screen/star.webp" className="sticker-share-screen" id="star-sticker" />
         <img src="/share-screen/switch.webp" className="sticker-share-screen" id="switch-sticker" />
         <section className={`bg-c-blue share-screen-container px-10 flex items-center justify-center mb-6 border-b-[2px] border-b-black`}>
-          <ShareScreenCard
-            author={currentSong.author}
-            title={currentSong.title}
-            thumbnail={currentSong.thumbnail}
-            url={currentSong.url}
-          />
+          {
+            loading
+              ? (
+                <p className="text-xl font-semibold">...</p>
+              )
+              : <ShareScreenCard
+                author={currentSong.author}
+                title={currentSong.title}
+                thumbnail={currentSong.thumbnail}
+                url={currentSong.url}
+              />
+          }
+
         </section>
       </div>
       <div className="share-buttons-container items-center gap-4 w-full justify-center px-10">
         {
-          currentSong.youtube && (
+          currentSong?.youtube && (
             <Link to={currentSong.youtube} className="rounded-full flex justify-center items-center gap-2 custom-container primary-animation px-12 py-2 font-bold bg-c-red text-xl">
               <i className='bx bxl-youtube text-2xl'></i>
               Youtube
@@ -41,7 +46,7 @@ export const ShareScreen = () => {
           )
         }
         {
-          currentSong.spotify && (
+          currentSong?.spotify && (
             <Link to={currentSong.spotify} className="rounded-full flex justify-center items-center gap-2 custom-container primary-animation px-12 py-2 font-bold bg-c-lightgreen text-xl">
               <i className='bx bxl-spotify text-2xl'></i>
               Spotify

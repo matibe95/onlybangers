@@ -1,30 +1,13 @@
 import { Card } from "../components/Card"
-// import { SONGS_LIST } from "../mocks/songs"
 import { Footer } from "../components/Footer"
-import { useEffect, useState } from "react"
-import { BOT_ID, CHAT_ID } from "../constants/credentials"
+import { useState } from "react"
 import './Home.css'
-import { filterAndCleanMessage } from "../utils/filterMessage"
+import { useFetch } from "../hooks/useFetch"
+import { API_URLS } from "../constants/urls"
 
 export const Home = () => {
   const [songLink, setSongLink] = useState("")
-  const [songsList, setSongsList] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMessages = async () => {
-      const response = await fetch(`https://api.telegram.org/bot${BOT_ID}/getUpdates`);
-      if (!response.ok) {
-        throw new Error('Error al obtener los mensajes de Telegram');
-      }
-      const data = await response.json();
-
-      const result = filterAndCleanMessage(data)
-      setSongsList(result)
-      setLoading(false);
-    };
-    fetchMessages();
-  }, [])
+  const { data, loading } = useFetch(API_URLS.getAll, 'GET');
 
   const handleSend = async () => {
     const showError = () => {
@@ -35,13 +18,22 @@ export const Home = () => {
       alert('Gracias por tu recomendación, en breves la subiremos a la web!')
     }
 
-    if (!songLink.includes('https://')) {
-      showError();
-      return;
-    }
-    await fetch(`https://api.telegram.org/bot${BOT_ID}/sendMessage?chat_id=${CHAT_ID}&text=${songLink}`);
-    showCorrectSong()
-    location.reload();
+    fetch('http://localhost:8001/api/uploadSong/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        songLink,
+      }),
+    })
+      .then(res => res.json())
+      .then(response => {
+        if (response.ok) {
+          showCorrectSong()
+          location.reload();
+          return
+        }
+        showError();
+      })
   }
 
 
@@ -58,14 +50,11 @@ export const Home = () => {
             <h1 className="text-3xl primary-header md:text-5xl xl:text-6xl font-bold">En busqueda de la <br /> armonía que nos conecta.</h1>
             <p className="text text-base text-pretty xl:text-xl font-medium ">OnlyBangers es una colección de canciones recomendadas por <br /> amantes de la música, <span className="underline underline-offset-[2px]">esperando a ser descubiertas.</span></p>
             <div className="cta-buttons-container gap-4 py-2 text-lg">
-              <input onChange={(e) => setSongLink(e.target.value)} type="text" placeholder="Link de la canción" className="cta-button rounded-full text-center custom-container px-12 py-2 font-medium bg-white outline-none placeholder:italic w-full" />
-              <button onClick={handleSend} className="cta-button flex items-center gap-2 rounded-full text-center custom-container px-12 py-2 font-bold bg-c-yellow">
+              <input onChange={(e) => setSongLink(e.target.value)} type="text" placeholder="Link de la canción" className="cta-button rounded-full text-center custom-container px-5 py-2 font-medium bg-white outline-none placeholder:italic w-full" />
+              <button onClick={handleSend} className="cta-button flex items-center gap-2 rounded-full text-center justify-center custom-container px-12 py-2 font-bold bg-c-yellow">
                 Recomendar
                 <i className='bx bxs-cloud-upload text-2xl'></i>
               </button>
-              {/* <a target="_blank" href={"https://www.instagram.com/onlybangers_music/"} className="contact-button rounded-full text-center custom-container px-12 py-2 font-bold bg-white">
-                Contacto
-              </a> */}
             </div>
           </div>
         </section>
@@ -103,11 +92,11 @@ export const Home = () => {
             ? (
               <p className="text-xl font-semibold">Estamos cargando las canciones...</p>
             )
-            : songsList.map((item) => {
+            : data?.map((item) => {
               return (
                 <Card
                   clickable
-                  id={item.id}
+                  referenceId={item.reference}
                   key={item.id}
                   title={item.title}
                   author={item.author}
@@ -116,18 +105,6 @@ export const Home = () => {
               )
             })
         }
-        {/* {SONGS_LIST.map((item) => {
-          return (
-            <Card
-              clickable
-              id={item.id}
-              key={item.id}
-              title={item.title}
-              author={item.author}
-              thumbnail={item.thumbnail}
-            />
-          )
-        })} */}
       </div>
       <Footer />
     </div>

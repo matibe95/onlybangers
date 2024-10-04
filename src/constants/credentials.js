@@ -1,2 +1,0 @@
-export const BOT_ID = "7756181779:AAG0bpMYUI3Vmsq0GD_0FzHNTSWSQLvmNn4"
-export const CHAT_ID = "2070541197"
