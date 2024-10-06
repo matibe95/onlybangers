@@ -5,6 +5,7 @@ import { API_URLS } from "../constants/urls";
 
 export const Recommend = () => {
   const inputRef = useRef(null);
+  const descriptionInputRef = useRef(null);
   const buttonRef = useRef(null);
 
   const showError = () => {
@@ -21,11 +22,10 @@ export const Recommend = () => {
   }
 
   const handleSend = async (e) => {
-    buttonRef.current.disabled = true;
     e.preventDefault();
+    buttonRef.current.disabled = true;
     const songLink = e.target['link'].value
     const description = e.target['description'].value
-
     fetch(API_URLS.sendSongToBot, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -38,7 +38,8 @@ export const Recommend = () => {
       .then(response => {
         if (response.ok) {
           showCorrectSong()
-          location.reload();
+          inputRef.current.value = ''
+          descriptionInputRef.current.value = ''
           return
         }
         showError();
@@ -62,7 +63,7 @@ export const Recommend = () => {
             <h3 className="text-2xl recommend-header font-bold text-center primary-header">Sube tu recomendación</h3>
             <div className="flex flex-col gap-3 mb-3 recommend-input-container">
               <input ref={inputRef} type="text" id="link" placeholder="Link de la canción" className={`cta-button rounded-xl custom-container px-5 py-2 font-medium bg-white outline-none w-full`} />
-              <textarea rows={6} type="text" id="description" placeholder="Comentario (opcional)" className="resize-none cta-button rounded-xl custom-container px-5 py-2 font-medium bg-white outline-none w-full" />
+              <textarea ref={descriptionInputRef} rows={6} type="text" id="description" placeholder="Comentario (opcional)" className="resize-none cta-button rounded-xl custom-container px-5 py-2 font-medium bg-white outline-none w-full" />
               {/* <input type="text" id="userName" placeholder="Tú nombre (opcional)" className="cta-button rounded-xl custom-container px-5 py-2 font-medium bg-white outline-none w-full" /> */}
             </div>
             <button ref={buttonRef} className="cta-button flex w-full items-center gap-2 rounded-full text-center justify-center custom-container px-12 py-2 font-bold bg-c-yellow">
