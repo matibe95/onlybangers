@@ -4,38 +4,10 @@ import { useState } from "react"
 import './Home.css'
 import { useFetch } from "../hooks/useFetch"
 import { API_URLS } from "../constants/urls"
+import { Link } from "react-router-dom"
 
 export const Home = () => {
-  const [songLink, setSongLink] = useState("")
   const { data, loading } = useFetch(API_URLS.getAll, 'GET');
-
-  const handleSend = async () => {
-    const showError = () => {
-      alert('Tu canción debe de ser un link válido')
-    }
-
-    const showCorrectSong = () => {
-      alert('Gracias por tu recomendación, en breves la subiremos a la web!')
-    }
-
-    fetch('http://localhost:8001/api/uploadSong/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        songLink,
-      }),
-    })
-      .then(res => res.json())
-      .then(response => {
-        if (response.ok) {
-          showCorrectSong()
-          location.reload();
-          return
-        }
-        showError();
-      })
-  }
-
 
   return (
     <div>
@@ -50,11 +22,13 @@ export const Home = () => {
             <h1 className="text-3xl primary-header md:text-5xl xl:text-6xl font-bold">En busqueda de la <br /> armonía que nos conecta.</h1>
             <p className="text text-base text-pretty xl:text-xl font-medium ">OnlyBangers es una colección de canciones recomendadas por <br /> amantes de la música, <span className="underline underline-offset-[2px]">esperando a ser descubiertas.</span></p>
             <div className="cta-buttons-container gap-4 py-2 text-lg">
-              <input onChange={(e) => setSongLink(e.target.value)} type="text" placeholder="Link de la canción" className="cta-button rounded-full text-center custom-container px-5 py-2 font-medium bg-white outline-none placeholder:italic w-full" />
-              <button onClick={handleSend} className="cta-button flex items-center gap-2 rounded-full text-center justify-center custom-container px-12 py-2 font-bold bg-c-yellow">
+              {/* <input onChange={(e) => setSongLink(e.target.value)} type="text" placeholder="Link de la canción" className="cta-button rounded-full text-center custom-container px-5 py-2 font-medium bg-white outline-none placeholder:italic w-full" /> */}
+              <Link to={'/recomendar'} className="cta-button flex items-center gap-2 rounded-full text-center justify-center custom-container px-12 py-2 font-bold bg-c-yellow">
                 Recomendar
-                <i className='bx bxs-cloud-upload text-2xl'></i>
-              </button>
+              </Link>
+              <a target="_blank" href="https://www.instagram.com/onlybangers_music/" className="cta-button flex items-center gap-2 rounded-full text-center justify-center custom-container px-12 py-2 font-bold bg-white">
+                Contacto
+              </a>
             </div>
           </div>
         </section>

@@ -69,9 +69,23 @@
   width: 370px;
 }
 
+@media (min-width: 580px) {
+
+  .card-back:hover,
+  .card-front:hover {
+    transform: translate(-0.4rem, -0.4rem) !important;
+  }
+}
+
+.card-back {
+  height: 462px;
+  width: 370px;
+}
+
 .share-screen-container {
   height: 550px;
 }
+
 
 @media (max-width: 1092px) {
   #rounded-star-sticker {
@@ -214,6 +228,11 @@
     width: 350px;
   }
 
+  .card-back {
+    height: 438px;
+    width: 350px;
+  }
+
   .share-screen-card h2 {
     @apply text-xl
   }
@@ -338,14 +357,21 @@
     top: 82%;
   }
 
+  .card-back {
+    height: 344px;
+    width: 260px;
+  }
+
   .share-screen-card {
     width: 260px;
   }
 
+  .card-back h2,
   .share-screen-card h2 {
     @apply text-lg truncate;
   }
 
+  .card-back p,
   .share-screen-card p {
     @apply text-base;
   }
@@ -353,6 +379,7 @@
   .share-screen-container {
     height: 420px;
   }
+
 }
 
 @media (max-width: 375px) {

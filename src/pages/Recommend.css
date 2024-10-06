@@ -1,0 +1,42 @@
+.recommend-screen-container {
+  height: 620px;
+}
+
+.recommend-header {
+  @apply mb-10;
+}
+
+@media (max-width: 425px) {
+  .recommend-input-container {
+    @apply text-sm;
+  }
+
+  .recommend-header {
+    @apply mb-5;
+  }
+
+  /* .share-screen-card {
+    @apply w-full;
+  } */
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(4px);
+  }
+
+  50% {
+    transform: translateX(-4px);
+  }
+
+  100% {
+    transform: translateX(4px);
+  }
+}
+
+.link-input {
+  border: 2px solid var(--color-red) !important;
+  box-shadow: 4px 4px 0px 0px var(--color-red) !important;
+  transition: none;
+  animation: shake 0.2s infinite;
+}

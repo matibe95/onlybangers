@@ -1,3 +1,5 @@
 export const API_URLS = {
-  getAll: "http://localhost:8001/api/all",
+  getAll: "https://fodex.tech/onlybangersapi/public/api/all",
+  searchById: "https://fodex.tech/onlybangersapi/public/api/getSong/",
+  sendSongToBot: "https://fodex.tech/onlybangersapi/public/api/uploadSong",
 }
