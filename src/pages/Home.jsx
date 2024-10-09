@@ -20,13 +20,13 @@ export const Home = () => {
         <section className="primary-container bg-c-primary py-12 px-10 h-[500px] flex items-center justify-center">
           <div className="main-container-container z-50">
             <h1 className="text-3xl primary-header md:text-5xl xl:text-6xl font-bold">En busqueda de la <br /> armonía que nos conecta.</h1>
-            <p className="text text-base text-pretty xl:text-xl font-medium ">OnlyBangers es una colección de canciones recomendadas por <br /> amantes de la música, <span className="underline underline-offset-[2px]">esperando a ser descubiertas.</span></p>
+            <p className="text text-base text-pretty xl:text-xl font-medium ">OnlyBangers es una colección de canciones recomendadas por <br /> amantes de la música, <span className="">esperando a ser descubiertas.</span></p>
             <div className="cta-buttons-container gap-4 py-2 text-lg">
               {/* <input onChange={(e) => setSongLink(e.target.value)} type="text" placeholder="Link de la canción" className="cta-button rounded-full text-center custom-container px-5 py-2 font-medium bg-white outline-none placeholder:italic w-full" /> */}
               <Link to={'/recomendar'} className="cta-button flex items-center gap-2 rounded-full text-center justify-center custom-container px-12 py-2 font-bold bg-c-yellow">
                 Recomendar
               </Link>
-              <a target="_blank" href="https://www.instagram.com/onlybangers_music/" className="cta-button flex items-center gap-2 rounded-full text-center justify-center custom-container px-12 py-2 font-bold bg-white">
+              <a target="_blank" href="https://www.instagram.com/onlybangers.app/" className="cta-button flex items-center gap-2 rounded-full text-center justify-center custom-container px-12 py-2 font-bold bg-white">
                 Contacto
               </a>
             </div>
