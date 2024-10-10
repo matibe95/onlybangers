@@ -1,5 +1,5 @@
 export const AboutUs = () => {
   return (
-    <div>Contact</div>
+    <div>Ya pondremos el about us, ponele</div>
   )
 }

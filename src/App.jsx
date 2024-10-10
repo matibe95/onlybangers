@@ -5,6 +5,7 @@ import './App.css'
 import { ShareScreen } from './pages/ShareScreen'
 import { Recommend } from './pages/Recommend'
 import { AboutUs } from './pages/AboutUs'
+import { DailyScreen } from './pages/DailyScreen'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recomendar" element={<Recommend />} />
+        <Route path="/daily" element={<DailyScreen />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/:referenceId" element={<ShareScreen />} />
       </Routes>

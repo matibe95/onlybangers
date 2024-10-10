@@ -26,7 +26,7 @@ export const Home = () => {
               <Link to={'/recomendar'} className="cta-button flex items-center gap-2 rounded-full text-center justify-center custom-container px-12 py-2 font-bold bg-c-yellow">
                 Recomendar
               </Link>
-              <a target="_blank" href="https://www.instagram.com/onlybangers_music/" className="cta-button flex items-center gap-2 rounded-full text-center justify-center custom-container px-12 py-2 font-bold bg-white">
+              <a target="_blank" href="https://www.instagram.com/onlybangers.app/" className="cta-button flex items-center gap-2 rounded-full text-center justify-center custom-container px-12 py-2 font-bold bg-white">
                 Contacto
               </a>
             </div>
