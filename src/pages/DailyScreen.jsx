@@ -29,8 +29,8 @@ export const DailyScreen = () => {
   const visitedDate = localStorage.getItem('visitedDate')
   if (visitedDate && visitedDate != new Date().getDate()) {
     incrementCounter();
-    localStorage.setItem('visitedDate', new Date().getDate())
   }
+  localStorage.setItem('visitedDate', new Date().getDate())
 
   const { data, loading, error } = useFetch(API_URLS.getDaily);
 
