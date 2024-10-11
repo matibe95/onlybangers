@@ -5,6 +5,33 @@ import { useState } from "react";
 import ReactCardFlip from "react-card-flip";
 
 export const DailyScreen = () => {
+  const threshold = 5;
+  const incrementCounter = async () => {
+    fetch(API_URLS.incrementCounter, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(res => res.json())
+      .then(response => {
+        const visitas = response?.cantidad
+        if (visitas % threshold == 0) {
+          fetch(API_URLS.botCounter, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              cantidad: visitas,
+            }),
+          })
+        }
+      })
+  }
+
+  const visitedDate = localStorage.getItem('visitedDate')
+  if (visitedDate && visitedDate != new Date().getDate()) {
+    incrementCounter();
+    localStorage.setItem('visitedDate', new Date().getDate())
+  }
+
   const { data, loading, error } = useFetch(API_URLS.getDaily);
 
   const currentSong = data
@@ -37,6 +64,10 @@ export const DailyScreen = () => {
         </section>
       </div>
       <div className="share-buttons-container items-center gap-4 w-full justify-center px-10 mb-8 flex-wrap">
+        <a href="https://www.instagram.com/onlybangers.app/" className="rounded-full flex justify-center gap-2 custom-container primary-animation px-12 py-2 font-bold bg-c-primary text-xl">
+          <i className='bx bxl-instagram-alt text-2xl'></i>
+          @onlybangers
+        </a>
         {
           currentSong?.youtube_link && (
             <Link to={currentSong.youtube_link} className="rounded-full flex justify-center items-center gap-2 custom-container primary-animation px-12 py-2 font-bold bg-c-red text-xl">
@@ -53,10 +84,6 @@ export const DailyScreen = () => {
             </Link>
           )
         }
-        <a href="https://www.instagram.com/onlybangers.app/" className="rounded-full flex justify-center items-center gap-2 custom-container primary-animation px-12 py-2 font-bold bg-c-primary text-xl">
-          <i className='bx bxl-instagram-alt text-2xl'></i>
-          Instagram
-        </a>
       </div>
     </div >
   )
