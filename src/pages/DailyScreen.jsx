@@ -27,7 +27,7 @@ export const DailyScreen = () => {
   }
 
   const visitedDate = localStorage.getItem('visitedDate')
-  if (visitedDate && visitedDate != new Date().getDate()) {
+  if (!visitedDate || visitedDate != new Date().getDate()) {
     incrementCounter();
   }
   localStorage.setItem('visitedDate', new Date().getDate())
